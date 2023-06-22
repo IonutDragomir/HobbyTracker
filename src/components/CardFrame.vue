@@ -4,7 +4,7 @@
       <img :src="imgUrl" :alt="name + ' picture'">
     </div>
     <section class="info_container">
-      <header class="pt-3 ps-2">
+      <header class="pt-3 ps-2 mb-3">
         <h2>{{ name }}</h2>
       </header>
       <p class="ps-2" :style="date == 'TBA' ? 'font-style: italic' : ''">{{ date }}</p>
@@ -43,7 +43,7 @@ export default {
 
   .image_container {
     img {
-      width: 11vw;
+      width: 12vw;
       height: 7vw;
       object-fit: fill;
       border-radius: 1vw;
@@ -54,17 +54,15 @@ export default {
     text-align: left;
 
     header {
-      // height: 69px;
 
       h2 {
-        font-size: 23px;
+        font-size: 21px;
         line-height: initial;
-        margin-bottom: 1rem;
       }
     }
 
     p {
-      font-size: 21px;
+      font-size: 18px;
       line-height: initial;
       margin: 0;
     }

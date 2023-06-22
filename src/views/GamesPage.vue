@@ -39,7 +39,49 @@
     </section>
 
     <div class="row d-flex justify-content-start">
-      <CardFrame v-for="game in games" :details="game" :key="game.name" class="col-md-2 col-lg-2 mt-4 g-2" />
+      <CardFrame v-for="game in upcomingGames" :details="game" :key="game.name" class="col-md-2 col-lg-2 mt-2 g-2" />
+    </div>
+    <section class="d-flex justify-content-between my-2 mt-4">
+      <h2>Unplayed games</h2>
+
+      <div class="dropdown">
+        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-ul"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+          </svg> Sort
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="#">
+              Name
+              <span v-if="ascending" @click="ascending = false">
+                (A - Z)
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up"
+                  viewBox="0 0 16 16">
+                  <path fill-rule="evenodd"
+                    d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
+                </svg>
+              </span>
+              <span v-else @click="ascending = true">
+                (A - Z)
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-arrow-down" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd"
+                    d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z" />
+                </svg>
+              </span>
+            </a></li>
+          <li><a class="dropdown-item" href="#">Date</a></li>
+          <li><a class="dropdown-item" href="#">Price</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="row d-flex justify-content-start">
+      <CardFrame v-for="unplayed in unplayedGames" :details="unplayed" :key="unplayed.name"
+        class="col-md-2 col-lg-2 mt-2 g-2" />
     </div>
   </div>
 </template>
@@ -57,7 +99,7 @@ export default {
   data() {
     return {
       ascending: true,
-      games: [
+      upcomingGames: [
         {
           name: "Immortals of Aveum",
           imageUrl: "https://ascendantstudios.com/wp-content/uploads/2023/04/std-keyart-2560x1440-1.jpg",
@@ -94,14 +136,6 @@ export default {
           name: "Cyberpunk 2077: Phantom Liberty",
           imageUrl: "https://media.vandal.net/i/640x360/12-2022/20221294562119_1.jpg",
           release_date: "26.09.2023",
-          description1: "",
-          description2: "",
-          description3: "",
-        },
-        {
-          name: "Star Wars Jedi: Survivor",
-          imageUrl: "https://prod.assets.earlygamecdn.com/images/Jedi-Switch.jpg?mtime=1679929137",
-          release_date: "28.04.2023",
           description1: "",
           description2: "",
           description3: "",
@@ -147,6 +181,16 @@ export default {
           description3: "",
         }
       ],
+      unplayedGames: [
+        {
+          name: "Star Wars Jedi: Survivor",
+          imageUrl: "https://prod.assets.earlygamecdn.com/images/Jedi-Switch.jpg?mtime=1679929137",
+          release_date: "28.04.2023",
+          description1: "",
+          description2: "",
+          description3: "",
+        },
+      ]
     };
   },
 };
