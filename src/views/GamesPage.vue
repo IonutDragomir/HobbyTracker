@@ -38,7 +38,7 @@
       </div>
     </section>
 
-    <div class="row d-flex justify-content-center">
+    <div class="row d-flex justify-content-start">
       <CardFrame v-for="game in games" :details="game" :key="game.name" class="col-md-2 col-lg-2 mt-4 g-2" />
     </div>
   </div>
