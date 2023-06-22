@@ -13,9 +13,10 @@
           </svg> Sort
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="#">
+          <li>
+            <a class="dropdown-item" href="#" @click="showFirstSortArrow(); sortByName(upcomingGames, firstNameSort)">
               Name
-              <span v-if="ascending" @click="ascending = false">
+              <span v-if="firstNameSort === 'asc'">
                 (A - Z)
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up"
                   viewBox="0 0 16 16">
@@ -23,7 +24,7 @@
                     d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
                 </svg>
               </span>
-              <span v-else @click="ascending = true">
+              <span v-else-if="firstNameSort === 'desc'">
                 (A - Z)
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                   class="bi bi-arrow-down" viewBox="0 0 16 16">
@@ -31,9 +32,11 @@
                     d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z" />
                 </svg>
               </span>
-            </a></li>
-          <li><a class="dropdown-item" href="#">Date</a></li>
-          <li><a class="dropdown-item" href="#">Price</a></li>
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#" @click="sortBydate(upcomingGames);">Date</a>
+          </li>
         </ul>
       </div>
     </section>
@@ -54,9 +57,10 @@
           </svg> Sort
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="#">
+          <li>
+            <a class="dropdown-item" href="#" @click="showSecondSortArrow, sortName">
               Name
-              <span v-if="ascending" @click="ascending = false">
+              <span v-if="sortName === 'asc'">
                 (A - Z)
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up"
                   viewBox="0 0 16 16">
@@ -64,7 +68,7 @@
                     d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
                 </svg>
               </span>
-              <span v-else @click="ascending = true">
+              <span v-else-if="sortName == 'desc'">
                 (A - Z)
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                   class="bi bi-arrow-down" viewBox="0 0 16 16">
@@ -72,9 +76,9 @@
                     d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z" />
                 </svg>
               </span>
-            </a></li>
+            </a>
+          </li>
           <li><a class="dropdown-item" href="#">Date</a></li>
-          <li><a class="dropdown-item" href="#">Price</a></li>
         </ul>
       </div>
     </section>
@@ -98,12 +102,13 @@ export default {
   },
   data() {
     return {
-      ascending: true,
+      sortName: "default",
+      firstNameSort: "default",
       upcomingGames: [
         {
           name: "Immortals of Aveum",
           imageUrl: "https://ascendantstudios.com/wp-content/uploads/2023/04/std-keyart-2560x1440-1.jpg",
-          release_date: "20.07.2023",
+          release_date: "2023.07.20",
           description1: "Immortals of Aveum is an upcoming first-person shooter game.",
           description2: "Summon your power, stop the Everwar, save the realms. Play as Jak as he and Lucium’s elite battlemages race to uncover Aveum’s past to save its future.",
           description3: "Join the Order of the Immortals, the champion protectors of Lucium, and become Jak, an elite Triarch Magnus. Unleash magic spells with deadly skill, and decimate legions of enemies in a game that defies FPS conventions.",
@@ -111,7 +116,7 @@ export default {
         {
           name: "Assassin's Creed Mirage",
           imageUrl: "https://cdn2.unrealengine.com/breaker-image-1920x1080-1920x1080-9b4788ed14ab.png",
-          release_date: "12.10.2023",
+          release_date: "2023.10.12",
           description1: "Assassin's Creed Mirage is an upcoming action-adventure game",
           description2: "Become the most versatile Assassin in franchise history.",
           description3: "In Assassin's Creed Mirage, you are Basim, a cunning street thief with nightmarish visions seeking answers and justice.Join an ancient organisation and come to understand a new creed – one that will change Basim’s fate in ways he never could have imagined.",
@@ -119,7 +124,7 @@ export default {
         {
           name: "The Crew Motorfest",
           imageUrl: "https://gaming-cdn.com/images/products/10643/orig/the-crew-motorfest-pc-game-cover.jpg?v=1686596472",
-          release_date: "14.09.2023",
+          release_date: "2023.09.14",
           description1: "",
           description2: "",
           description3: "",
@@ -127,7 +132,7 @@ export default {
         {
           name: "Avatar: Frontiers of Pandora",
           imageUrl: "https://blog.playstation.com/tachyon/2023/06/cebcc8ad6e129dc75698fb6ba4831a26b7f40d15.jpg?resize=1088%2C612&crop_strategy=smart",
-          release_date: "17.12.2023",
+          release_date: "2023.12.17",
           description1: "",
           description2: "",
           description3: "",
@@ -135,7 +140,7 @@ export default {
         {
           name: "Cyberpunk 2077: Phantom Liberty",
           imageUrl: "https://media.vandal.net/i/640x360/12-2022/20221294562119_1.jpg",
-          release_date: "26.09.2023",
+          release_date: "2023.09.26",
           description1: "",
           description2: "",
           description3: "",
@@ -175,7 +180,7 @@ export default {
         {
           name: "Starfield",
           imageUrl: "https://i0.wp.com/news.xbox.com/en-us/wp-content/uploads/sites/2/2022/06/StarfieldShowcase_HERO-165ee8e45d4141d2d754.jpg?fit=1920%2C1080&ssl=1",
-          release_date: "06.09.2023",
+          release_date: "2023.09.06",
           description1: "",
           description2: "",
           description3: "",
@@ -185,7 +190,7 @@ export default {
         {
           name: "Star Wars Jedi: Survivor",
           imageUrl: "https://prod.assets.earlygamecdn.com/images/Jedi-Switch.jpg?mtime=1679929137",
-          release_date: "28.04.2023",
+          release_date: "2023.04.28",
           description1: "",
           description2: "",
           description3: "",
@@ -193,6 +198,90 @@ export default {
       ]
     };
   },
+  methods: {
+    showFirstSortArrow() {
+      if (this.firstNameSort === "default") {
+        this.firstNameSort = "asc"
+      }
+      else if (this.firstNameSort === "asc") {
+        this.firstNameSort = "desc"
+      }
+      else if (this.firstNameSort === "desc") {
+        this.firstNameSort = "default"
+      }
+    },
+    showSecondSortArrow() {
+      if (this.sortName === "default") {
+        this.sortName = "asc"
+      }
+      else if (this.sortName === "asc") {
+        this.sortName = "desc"
+      }
+      else if (this.sortName === "desc") {
+        this.sortName = "default"
+      }
+    },
+    sortByName(arr, sortType) {
+      if (sortType === 'asc') {
+        function compare(a, b) {
+          if (a.name < b.name) {
+            return -1;
+          }
+          if (a.name > b.name) {
+            return 1;
+          }
+          return 0;
+        }
+
+        arr.sort(compare);
+      }
+      else if (sortType === 'desc') {
+        function compare(a, b) {
+          if (a.name > b.name) {
+            return -1;
+          }
+          if (a.name < b.name) {
+            return 1;
+          }
+          return 0;
+        }
+
+        arr.sort(compare);
+      }
+
+    },
+    sortBydate(arr) {
+      // function compareBydate(a, b) {
+      //   if (a.release_date < b.release_date) {
+      //     return -1;
+      //   }
+      //   if (a.release_date > b.release_date) {
+      //     return 1;
+      //   }
+      //   return 0;
+      // }
+
+      // arr.sort(compareBydate);
+
+      // function compareBydate(a, b) {
+      //   return new Date(b.release_date) - new Date(a.release_date);
+      // }
+      arr.sort((a, b) => {
+        let date1 = new Date(a.release_date)
+        let date2 = new Date(b.release_date)
+        if (date1 < date2) {
+          return -1;
+        }
+        if (date1 > date2) {
+          return 1;
+        }
+        return 0;
+      }
+      );
+      // let test = new Date("04.12.2023");
+      // console.log(test.toISOString())
+    }
+  }
 };
 </script>
 <style scoped lang="scss">
